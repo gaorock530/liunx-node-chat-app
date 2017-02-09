@@ -1,0 +1,106 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+ol,ul,li{
+  list-style: none;
+}
+body{
+  background-color: #111;
+  color: #cc0033;
+  overflow:hidden;
+}
+/*
+| Left section - Game Catelog
+*/
+#left{
+  position: absolute;
+  left:0;
+  top:0;
+  height:100%;
+  width: 50px;
+  background-color: #eee;
+  border: 2px solid #cc0033;
+}
+/*
+| Mid section - Main
+*/
+#mid{
+  position: relative;
+  left:54px;
+  top:0;
+  width:800px;
+  height:800px;
+  background-color: #ccc;
+}
+/*
+| Right section - chat room
+*/
+#right{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 350px;
+  border: 3px solid #cc0033;
+  background-color: #cc0033;
+  font-size: 14px;
+}
+#message-list{
+  position: relative;
+  width: 346px;
+  height: 850px;
+  margin: 0 auto;
+  margin-top: 5px;
+  border: 2px solid #cc00aa;
+  background-color: #111;
+  overflow-x: hidden;
+}
+/*#message-list-wrap{
+  position: absolute;
+  bottom: 0;
+  min-height:850px;
+}*/
+
+#sendbox{
+  position: absolute;
+  width: 346px;
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 5px;
+  border: 2px solid #cc00aa;
+  background-color: #111;
+}
+#message{
+  position: absolute;
+  left:0px;
+  width:300px;
+  height:30px;
+  font-size: 14px;
+}
+#send{
+  position: absolute;
+  right:0px;
+  width:40px;
+  height:30px;
+  font-weight: bold;
+  line-height: 32px;
+  border: 2px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+#send-location{
+  position: absolute;
+  width:346px;
+  height:30px;
+  top: 36px;
+  font-weight: bold;
+}
+
+.message-line p{
+  padding: 3px;
+  word-wrap: break-word;
+  word-break: normal;
+  cursor: default;
+}
