@@ -21,7 +21,6 @@
 
     $("#message-list").getNiceScroll().resize();
     outter.scrollTop(inner.height()-850+38);
-    //console.log(outter.scrollTop());
   });
 
   socket.on('disconnect', function () {
@@ -72,7 +71,7 @@
 
     //console.log("message-list-height : ", outter.height());
     //console.log("message-list-wrap-height : ", inner.height() + " scroll : " + scroll);
-    //message.val("");
+    message.val("");
   }
   //geolocation
   var locationButton = $('#send-location');
