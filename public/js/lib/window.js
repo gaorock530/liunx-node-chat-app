@@ -1,4 +1,7 @@
 ;(function () {
+
+  window.userColor = null;
+
   $(window).resize(function () {
     resizeWindow();
   });

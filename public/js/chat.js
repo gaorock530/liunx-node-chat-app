@@ -1,26 +1,27 @@
 ;$(document).ready(function () {
   var socket = io();
-
+  var color = ["33ff33", "66ffff", "9900ff", "990066", "99ccff", "99ff33", "cc0033", "cc00ff", "ccff33", "ccffff", "ff9933", "ff66ff"];
   var init = true;
   var user = getUserAgent();
   var outter = $("#message-list");
   var inner = $('#message-list-wrap');
   var moreMessage = $("#more-message");
+  var rndColor = Math.floor(Math.random()*color.length);
+  //console.log(rndColor);
+
 
 
 
   socket.on('connect', function () {
     var params = $.deparam(window.location.search);
+    params.color = '#'+color[rndColor];
     socket.emit('join', params, function (err) {
       if (err) {
         alert(err);
         window.location.href = '/';
       }
-      // else{
-      //   console.log(params.info.ip);
-      //   console.log('No error!');
-      // }
     });
+
 
   });
 
@@ -50,23 +51,35 @@
     }
 
   }
-
-  socket.on('newMessage', function (message) {
+  socket.on('sysMessage', function (message) {
     var timeFormat = moment(message.createdAt).format('h:mm');
-    //var template = $("#message-template").html();
-    //var showIt = display ? '':'style=\"display:none\"';
-    //console.log(showIt);
-    // var html = Mustache.render(template, {
-    //   from: message.from,
-    //   message: message.text,
-    //   time: timeFormat,
-    //   showIt: showIt
-    // });
+
     var li = $('<li></li>').addClass('message-line');
     var p = $('<p></p>');
     var span1 = $('<span></span>').addClass('messageTime');
     if (!display) span1.attr('style','display:none');
-    var span2 = $('<span></span>').addClass('messageName');
+    var span2 = $('<span style="color:'+message.color+'"></span>').addClass('messageName');
+    span1.html(timeFormat);
+    p.append(span1);
+    span2.html(message.from);
+    p.append(span2);
+    p.append(message.text);
+    li.append(p);
+    inner.append(li);
+    outter.getNiceScroll().resize();
+    scrollToBottom();
+  });
+
+
+  socket.on('newMessage', function (message) {
+    var timeFormat = moment(message.createdAt).format('h:mm');
+
+
+    var li = $('<li></li>').addClass('message-line');
+    var p = $('<p></p>');
+    var span1 = $('<span></span>').addClass('messageTime');
+    if (!display) span1.attr('style','display:none');
+    var span2 = $('<span style="color:'+message.color+'"></span>').addClass('messageName');
     span1.html(timeFormat);
     p.append(span1);
     span2.html(message.from + " : ");
@@ -97,7 +110,6 @@
   });
 
   socket.on('showLocation', function (info) {
-
     var li = $('<li class="locations"></li>');
     var location = {"IP":info.ip, "City":info.city, "State":info.region_name, "Country":info.country_name};
     for(var i in location){

@@ -2,8 +2,8 @@ class Users {
   constructor () {
     this.users = [];
   }
-  addUser (id, name, room) {
-    var user = {id, name, room};
+  addUser (id, name, room, color='') {
+    var user = {id, name, room, color};
     this.users.push(user);
     return user;
   }
@@ -18,10 +18,10 @@ class Users {
   getUser (id) {
     return this.users.filter((user) => user.id === id)[0];
   }
-  updateUser(id, info){
+  updateUser(id, update){
     var user = this.getUser(id);
     if (user) {
-      user.info = info;
+      user[update.name] = update.value;
     }
     return user;
   }

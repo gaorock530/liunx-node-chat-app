@@ -32,32 +32,33 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message, callback) => {
     var user = users.getUser(socket.id);
     if (user && isRealString(message.text)) {
-      io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
+      io.to(user.room).emit('newMessage', generateMessage(user.name, message.text, user.color));
     }
     callback();
   });
 
   socket.on('join', (params, callback) => {
+    console.log(params);
     if (!isRealString(params.name) || !isRealString(params.room)){
-      return callback('err');
+      return callback('Name and Room are required!');
     } else{
       socket.join(params.room);
       users.removeUser(socket.id);
-      users.addUser(socket.id, params.name, params.room);
+      var user = users.addUser(socket.id, params.name, params.room, params.color);
       //socket.leave(params.room);
       //io.emit -> io.to(params.room);
       //socket.broadcast.emit -> socket.broadcast.to(params.room).emit;
       //socket.emit
       io.to(params.room).emit('updateUserList', users.getUserList(params.room));
-      socket.emit('newMessage', generateMessage('SYSTEM', 'Welcome to the Chat room!'));
-      socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined to this chat room!`));
+      socket.emit('sysMessage', generateMessage('', 'Welcome to the Chat room!'));
+      socket.broadcast.to(params.room).emit('sysMessage', generateMessage(params.name, ' has joined to this chat room!', user.color));
       callback();
     }
   });
 
   socket.on('updateUser', (info) => {
     if (typeof info === 'object'){
-      var user = users.updateUser(socket.id, info);
+      var user = users.updateUser(socket.id, {'name':'info','value':info});
       io.to(user.room).emit('showLocation', user.info);
     }
   });
@@ -66,7 +67,7 @@ io.on('connection', (socket) => {
     var user = users.removeUser(socket.id);
     if (user) {
       io.to(user.room).emit('updateUserList', users.getUserList(user.room));
-      io.to(user.room).emit('newMessage', generateMessage('Admin',`${user.name} has left.`));
+      io.to(user.room).emit('sysMessage', generateMessage(user.name,' has left.', user.color));
     }
   });
 });
