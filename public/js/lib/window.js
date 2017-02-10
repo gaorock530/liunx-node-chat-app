@@ -42,4 +42,24 @@
     cursorwidth: 5,
     autohidemode: "leave"
   });
+
+  var showTime = $("#show-time input");
+  window.display = true;
+
+
+  $("#show-time").on('click', function () {
+    if(showTime.is(':checked')){
+      showTime.removeAttr('checked');
+      $(".messageTime").fadeOut();
+      display = false;
+      // console.log(false);
+    }else{
+      showTime.attr('checked','checked');
+      $(".messageTime").fadeIn();
+      display = true;
+      // console.log(true);
+    }
+  });
+
+
 })();
