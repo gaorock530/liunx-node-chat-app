@@ -9,6 +9,7 @@ body{
   background-color: #111;
   color: #cc0033;
   overflow:hidden;
+  font-family: sans-serif;
 }
 /*
 | Left section - Game Catelog
@@ -125,11 +126,26 @@ body{
 .message-line p{
   padding: 3px;
   word-wrap: break-word;
+  word-break: break-all;
+  cursor: default;
+  color: #eee;
+}
+.sysMessage p{
+  padding: 3px;
+  font-size: 12px;
+  word-wrap: break-word;
   word-break: normal;
   cursor: default;
-  color: #fff;
+  color: #aaa;
 }
-
+.messageTime{
+  font-size: 12px;
+  color: #555;
+  margin-right: 2px;
+}
+.messageName{
+  font-size: 14px;
+}
 #more-message{
   position: absolute;
   width:346px;
@@ -142,10 +158,14 @@ body{
   cursor: pointer;
   display:none;
 }
+
 #more-message span{
   position: relative;
   z-index: 30;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color:#99ccff;
 }
 #more-message div{
   position: absolute;
@@ -153,21 +173,61 @@ body{
   height:30px;
   bottom: 0;
   left:0;
-  background: #ddd;
-  opacity: 0.3;
+  background: #aaa;
+  opacity: 0.6;
   z-index: 1;
 }
-.messageTime{
-  font-size: 12px;
-  color: #aaa;
-  margin-right: 2px;
-}
-.messageName{
-  color: #ccff33;
-}
+
 .locations{
   font-family: consolas;
   font-size: 16px;
   color: #33cc66;
   text-align: center;
+}
+
+/*
+* Login
+*/
+
+#login{
+  color:#9999cc;
+  margin: 0 auto;
+  margin-top:100px;
+  width: 200px;
+  height:300px;
+  background-color:#cc0033;
+  border-radius: 3%;
+}
+
+#form-header{
+  font-size: 20px;
+  font-weight: bold;
+  padding-top:30px;
+  text-align: center;
+}
+#form-body{
+  padding-top:20px;
+}
+.form{
+  position: relative;
+  left:8px;
+  margin: 0 auto;
+  width:180px;
+}
+.form-label{
+  font-weight: bold;
+  font-size: 14px;
+}
+.form-input{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  height:25px;
+  font-size: 14px;
+}
+.form-button{
+  top:20px;
+  left:8px;
+  height:30px;
+  width:184px;
+  font-size: 16px;
 }

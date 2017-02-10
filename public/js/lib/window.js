@@ -64,5 +64,13 @@
     }
   });
 
+  $("#more-message").mouseover(function () {
+    $("#more-message div").css({opacity: 0.8});
+    $("#more-message span").css({color:'#111'});
+  }).mouseout(function () {
+    $("#more-message div").css({opacity: 0.6});
+    $("#more-message span").css({color:'#99ccff'});
+  });
+
 
 })();

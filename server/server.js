@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
       //socket.broadcast.emit -> socket.broadcast.to(params.room).emit;
       //socket.emit
       io.to(params.room).emit('updateUserList', users.getUserList(params.room));
-      socket.emit('sysMessage', generateMessage('', 'Welcome to the Chat room!'));
+      socket.emit('sysMessage', generateMessage('', ' Welcome to the Chat room!'));
       socket.broadcast.to(params.room).emit('sysMessage', generateMessage(params.name, ' has joined to this chat room!', user.color));
       callback();
     }
@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
     var user = users.removeUser(socket.id);
     if (user) {
       io.to(user.room).emit('updateUserList', users.getUserList(user.room));
-      io.to(user.room).emit('sysMessage', generateMessage(user.name,' has left.', user.color));
+      io.to(user.room).emit('sysMessage', generateMessage(user.name,' has left this room.', user.color));
     }
   });
 });

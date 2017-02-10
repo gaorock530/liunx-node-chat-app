@@ -52,16 +52,16 @@
 
   }
   socket.on('sysMessage', function (message) {
-    var timeFormat = moment(message.createdAt).format('h:mm');
+    var timeFormat = moment(message.createdAt).format('h:mma');
 
-    var li = $('<li></li>').addClass('message-line');
+    var li = $('<li></li>').addClass('sysMessage');
     var p = $('<p></p>');
     var span1 = $('<span></span>').addClass('messageTime');
     if (!display) span1.attr('style','display:none');
     var span2 = $('<span style="color:'+message.color+'"></span>').addClass('messageName');
     span1.html(timeFormat);
     p.append(span1);
-    span2.html(message.from);
+    span2.html(" "+message.from);
     p.append(span2);
     p.append(message.text);
     li.append(p);
@@ -72,7 +72,7 @@
 
 
   socket.on('newMessage', function (message) {
-    var timeFormat = moment(message.createdAt).format('h:mm');
+    var timeFormat = moment(message.createdAt).format('h:mma');
 
 
     var li = $('<li></li>').addClass('message-line');
@@ -82,7 +82,7 @@
     var span2 = $('<span style="color:'+message.color+'"></span>').addClass('messageName');
     span1.html(timeFormat);
     p.append(span1);
-    span2.html(message.from + " : ");
+    span2.html(" "+message.from + " : ");
     p.append(span2);
     p.append(message.text);
     li.append(p);

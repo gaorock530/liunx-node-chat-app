@@ -3,13 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Log | ChatApp</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   </head>
   <body>
-    <form action="/chat.html">
-      <input type="text" name="name" placeholder="name here" autofocus/>
-      <input type="text" name="room" placeholder="room here"/>
-      <button>Join</button>
+    <form id="login" action="/chat.html">
+      <div id="form-header">CHAT APP</div>
+      <div id="form-body">
+        <label class="form form-label">Name:</label>
+        <input class="form form-input" type="text" name="name" placeholder="name here" autofocus/>
+        <label class="form form-label">Room:</label>
+        <input class="form form-input" type="text" name="room" placeholder="room here"/>
+        <button class="form form-button">JOIN</button>
+      </div>
     </form>
   </body>
 
