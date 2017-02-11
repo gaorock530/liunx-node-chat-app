@@ -157,10 +157,10 @@
     socket.emit('createMessage', {
       text: message.val()
     }, function () {
-      message.val("").focus();
+      
     });
 
-
+    message.val("").focus();
     //console.log("message-list-height : ", outter.height());
     //console.log("message-list-wrap-height : ", inner.height() + " scroll : " + scroll);
 
